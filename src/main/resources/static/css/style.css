@@ -1,0 +1,15 @@
+.square {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 20px;
+    
+}
+
+.row {
+    margin: 10px;
+}
+body{
+    background-color: gray;
+}
