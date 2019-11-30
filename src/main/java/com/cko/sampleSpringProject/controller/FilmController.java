@@ -20,6 +20,7 @@ public class FilmController {
 
     @GetMapping("/all")
     public String showAllFilmPage(){
+
         return "allFilms";
     }
 
@@ -31,8 +32,9 @@ public class FilmController {
     @GetMapping("/edit")
     public ModelAndView showEditFilmPage(@RequestParam Long id){
        ModelAndView modelAndView = new ModelAndView();
-       Optional<Film> optional = filmDAO.findById(id);
-        Film film = optional.get();
+//       Optional<Film> optional = filmDAO.findById(id);
+//        Film film = optional.get();
+        Film film = filmDAO.findFilmById(id);
         modelAndView.addObject("film",film);
         modelAndView.setViewName("editFilm");
         return modelAndView;
@@ -40,6 +42,12 @@ public class FilmController {
 
     @PostMapping("/create")
     public  String createFilm(Film film){
+        filmDAO.save(film);
+        return "allFilms";
+    }
+
+    @PostMapping("/edit")
+    public  String editFilm(Film film){
         filmDAO.save(film);
         return "allFilms";
     }
