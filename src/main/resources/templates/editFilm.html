@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Film</title>
 </head>
+
 <body>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<h1>Edit film</h1>
+<p></p>
+
+<form action="/films/edit" method="post">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th>Id</th>
+            <td><input name="id" type="text" aria-label="Id"  th:value="${film.id}" readonly></td>
+
+        </tr>
+
+        <tr>
+            <th>Title</th>
+            <td><input name="title" type="text" aria-label="Title" placeholder="Title" th:value="${film.title}"></td>
+
+        </tr>
+        </tbody>
+
+        <tbody>
+        <tr>
+            <th>Rating</th>
+            <td><input name="rating"  type="text" aria-label="Rating" placeholder="Rating" th:value="${film.rating}"></td>
+
+        </tr>
+        </tbody>
+
+        <tbody>
+        <tr>
+            <th>Age</th>
+            <td><input name="age"  type="text" aria-label="Age" placeholder="Age" th:value="${film.age}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Create</button>
+
+</form>
+
 
 </body>
 </html>
