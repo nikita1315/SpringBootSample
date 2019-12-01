@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,14 +31,27 @@ public class FilmController {
     }
 
     @GetMapping("/all")
-    public String showAllFilmPage(){
+    public ModelAndView showAllFilmPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("allFilms");
+        List<Film> filmslist = filmDAO.findAll();
+        modelAndView.addObject("films",filmslist);
 
-        return "allFilms";
+        return modelAndView;
     }
 
     @GetMapping("/create")
     public String showCreateFilmPage(){
         return "createFIlm";
+    }
+
+    @GetMapping("/delete")
+    public RedirectView showDeleteFilmPage(@RequestParam Long id){
+
+        filmDAO.deleteById(id);
+
+        return new RedirectView("/films/all");
+
     }
 
     @GetMapping("/edit")
@@ -51,15 +66,17 @@ public class FilmController {
     }
 
     @PostMapping("/create")
-    public  String createFilm(Film film){
+    public RedirectView createFilm(Film film){
         filmDAO.save(film);
-        return "allFilms";
+        return new RedirectView("/films/all");
     }
 
     @PostMapping("/edit")
-    public  String editFilm(Film film){
+    public RedirectView editFilm(Film film){
         filmDAO.save(film);
-        return "allFilms";
+        filmDAO.save(film);
+        return new RedirectView("/films/all");
+
     }
 
 }
