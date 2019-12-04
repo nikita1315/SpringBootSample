@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Films</title>
+    <title>All Products</title>
 </head>
 <body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,6 +23,13 @@
 
         <tbody>
 
+        <tr th:each="product :${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.amount}"></td>
+            <td><a type="button" class="btn btn-primary" th:href="@{'/products/edit?id=' + ${product.id}}">Edit</a></td>
+            <td><a type="button" class="btn btn-danger" th:href="@{'/products/delete?id=' + ${product.id}}">Delete</a></td>
         </tr>
 
         </tbody>

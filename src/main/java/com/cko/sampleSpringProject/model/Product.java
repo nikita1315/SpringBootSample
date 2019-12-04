@@ -1,10 +1,8 @@
 package com.cko.sampleSpringProject.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +13,10 @@ public class Product {
     private  int price;
     @Column
     private int amount;
+
+    public Product() {
+
+    }
 
     public Product(String name, int price, int amount) {
         this.name = name;

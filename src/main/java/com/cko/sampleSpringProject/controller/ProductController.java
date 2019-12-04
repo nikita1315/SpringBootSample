@@ -1,6 +1,8 @@
 package com.cko.sampleSpringProject.controller;
 
 
+import com.cko.sampleSpringProject.dao.FilmDAO;
+import com.cko.sampleSpringProject.dao.ProductDAO;
 import com.cko.sampleSpringProject.model.Film;
 import com.cko.sampleSpringProject.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,17 @@ import java.util.List;
 
 @RequestMapping("/products")
 public class ProductController {
-
+    @Autowired
+    ProductDAO productDAO;
 
     @GetMapping("/all")
-    public String showAllProductsPage() {
-        return "allProducts";
+    public ModelAndView showAllProductsPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("allProducts");
+    List<Product> productlist = productDAO.findAll();
+        modelAndView.addObject("products",productlist);
+
+        return modelAndView;
     }
 
 
@@ -33,9 +41,25 @@ public class ProductController {
 
 
     @GetMapping("/edit")
-    public String  showEditProductPage() {
+    public ModelAndView showEditProductPage(@RequestParam Long id){
+        ModelAndView modelAndView = new ModelAndView();
 
-        return "editProduct";
+       Product product = productDAO.findProductById(id);
+        modelAndView.addObject("product",product);
+        modelAndView.setViewName("editProduct");
+        return modelAndView;
+    }
+    @PostMapping("/edit")
+    public RedirectView editFilm(Product product){
+        productDAO.save(product);
+
+        return new RedirectView("/products/all");
+
+    }
+    @PostMapping("/create")
+    public RedirectView createProduct(Product product){
+        productDAO.save(product);
+        return new RedirectView("/products/all");
     }
 }
 

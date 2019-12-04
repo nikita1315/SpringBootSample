@@ -1,8 +1,10 @@
 package com.cko.sampleSpringProject;
 
 import com.cko.sampleSpringProject.dao.FilmDAO;
+import com.cko.sampleSpringProject.dao.ProductDAO;
 import com.cko.sampleSpringProject.model.Authority;
 import com.cko.sampleSpringProject.model.Film;
+import com.cko.sampleSpringProject.model.Product;
 import com.cko.sampleSpringProject.model.User;
 import com.cko.sampleSpringProject.service.AuthorityService;
 import com.cko.sampleSpringProject.service.SMSCService;
@@ -34,6 +36,8 @@ public class InitData {
     @Autowired
     FilmDAO filmDAO;
 
+    @Autowired
+    ProductDAO productDAO;
 
     Faker faker = new Faker();
 
@@ -47,8 +51,19 @@ public class InitData {
 
     }
 
+    public void initProducts() {
+
+        for(int j = 0; j < 10;j++) {
+            Product product = new Product(faker.book().title(), faker.number().numberBetween(100,3500), faker.number().numberBetween(10,30));
+       productDAO.save(product);
+        }
+
+
+    }
+
     public void initData(){
         initFilms();
+        initProducts();
         initUserAndRoles();
     }
 
