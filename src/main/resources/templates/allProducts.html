@@ -29,8 +29,12 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.amount}"></td>
             <td><a type="button" class="btn btn-primary" th:href="@{'/products/edit?id=' + ${product.id}}">Edit</a></td>
-            <td><a type="button" class="btn btn-danger" th:href="@{'/products/delete?id=' + ${product.id}}">Delete</a></td>
+
+
+            <td><a type="button" class="btn btn-danger" th:href="@{'/products/buy?id=' + ${product.id}}">Buy</a></td>
+
         </tr>
+
 
         </tbody>
     </table>
@@ -38,7 +42,7 @@
 </div>
 
 <div align = "center">
-    <a type="button" class="btn btn-success" th:href="@{'/product/create'}">Create</a>
+    <a type="button" class="btn btn-success" th:href="@{'/products/create'}">Create</a>
     <p></p>
     <p></p>
 </div>

@@ -74,7 +74,7 @@ public class FilmController {
     @PostMapping("/edit")
     public RedirectView editFilm(Film film){
         filmDAO.save(film);
-        filmDAO.save(film);
+
         return new RedirectView("/films/all");
 
     }

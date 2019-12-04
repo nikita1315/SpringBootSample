@@ -14,7 +14,7 @@
 <h1>Create a new product</h1>
 <p></p>
 
-<form action="/product/create" method="post">
+<form action="/products/create" method="post">
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -45,9 +45,14 @@
         </tr>
         </tbody>
     </table>
-</form>
-    <button type="submit" class="btn btn-primary">Create</button>
 
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+<div align = "center">
+    <a type="button" class="btn btn-success" th:href="@{'/products/all'}">Go home</a>
+    <p></p>
+    <p></p>
+</div>
 
 
 

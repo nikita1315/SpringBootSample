@@ -50,7 +50,7 @@ public class ProductController {
         return modelAndView;
     }
     @PostMapping("/edit")
-    public RedirectView editFilm(Product product){
+    public RedirectView editProduct(Product product){
         productDAO.save(product);
 
         return new RedirectView("/products/all");
@@ -60,6 +60,16 @@ public class ProductController {
     public RedirectView createProduct(Product product){
         productDAO.save(product);
         return new RedirectView("/products/all");
+    }
+    @GetMapping("/buy")
+    public RedirectView showBuyPage(@RequestParam Long id){
+
+        Product product = productDAO.findProductById(id);
+       product.setAmount(productDAO.findProductById(id).getAmount()-1);
+       productDAO.save(product);
+
+        return new RedirectView("/products/all");
+
     }
 }
 
