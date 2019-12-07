@@ -20,15 +20,6 @@ public class FilmController {
     @Autowired
     FilmDAO filmDAO;
 
-    @GetMapping("/testT")
-    public ModelAndView showTestTPage(){
-        ModelAndView modelAndView = new ModelAndView();
-        Film film = filmDAO.findFilmById((long) 1);
-        modelAndView.addObject("film",film);
-        modelAndView.setViewName("testT");
-        return modelAndView;
-
-    }
 
     @GetMapping("/all")
     public ModelAndView showAllFilmPage(){

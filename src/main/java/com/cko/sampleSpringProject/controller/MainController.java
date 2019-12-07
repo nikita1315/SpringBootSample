@@ -1,12 +1,18 @@
 package com.cko.sampleSpringProject.controller;
 
+import com.cko.sampleSpringProject.model.Film;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
+    @GetMapping("/testT")
+    public String showTestTPage(){
+        return "testT";
 
+    }
     @GetMapping("/loginPage")
     public String showLoginPage(){
         return "login";
