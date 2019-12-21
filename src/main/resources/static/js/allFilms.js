@@ -21,7 +21,7 @@ function test () {
 
 
 $(document).ready(function () {
-    alert("loaded");
+
 
     $.ajax({
         url: '/api/films/all',
@@ -57,3 +57,30 @@ $(document).ready(function () {
     });
 
 })
+
+
+function addFilm() {
+    var title = $("#title").val();
+    var rating = $("#rating").val();
+    var age = $("#age").val();
+
+    var newFilm = {
+        'title' : title,
+        'rating' : rating,
+        'age' : age
+    }
+    $.ajax({
+        method: "post",
+        url:"/api/films/add",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(newFilm),
+        success: function () {
+            window.location.replace("/films/all");
+
+        },
+        error: function (error) {
+
+        }
+
+    });
+}

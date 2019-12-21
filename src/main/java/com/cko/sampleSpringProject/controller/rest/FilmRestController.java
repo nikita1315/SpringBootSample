@@ -3,15 +3,11 @@ package com.cko.sampleSpringProject.controller.rest;
 import com.cko.sampleSpringProject.dao.FilmDAO;
 import com.cko.sampleSpringProject.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-
 @RequestMapping("/api/films")
 public class FilmRestController {
 
@@ -21,6 +17,11 @@ public class FilmRestController {
     @GetMapping("/get")
     public Film getFilmById(@RequestParam Long id) {
         return filmDAO.findFilmById(id);
+    }
+
+    @PostMapping("/add")
+    public void addFilm(@RequestBody Film film) {
+        filmDAO.save(film);
     }
 
     @GetMapping("/all")
