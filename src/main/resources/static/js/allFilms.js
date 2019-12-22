@@ -40,10 +40,10 @@ $(document).ready(function () {
                     "<td>"+films[i].rating+"</td>"+
                     "<td>"+films[i].age+"</td>"+
                     "<td>"+
-                    "<a type=\"button\" class=\"btn btn-primary\" href=\"/films/edit?id= " + films[i].id+" \">Edit</a>"+
+                    "<button  data-toggle=\"modal\" data-target=\"#edit-modal\" onclick=\"fillModal("+films[i].id+")\" class=\"btn btn-primary\" >Edit</button>"+
                     "</td>"+
                     "<td>"+
-                    "<a type=\"button\" class=\"btn btn-danger\" href=\"/films/delete?id=" + films[i].id +" \">Delete</a>"+
+                    "<a type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#aus\" >Delete</a>"+
                     "</td>"+
                     "</tr>")
 
@@ -58,6 +58,36 @@ $(document).ready(function () {
 
 })
 
+
+function addEditedFilm() {
+    var id = $("#id-edit").val();
+    var title = $("#title-edit").val();
+    var rating = $("#rating-edit").val();
+    var age = $("#age-edit").val();
+
+    var newFilm = {
+        'id': id,
+        'title' : title,
+        'rating' : rating,
+        'age' : age
+    }
+    $.ajax({
+        method: "post",
+        url:"/api/films/add",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(newFilm),
+        success: function () {
+            window.location.replace("/films/all");
+
+        },
+        error: function (error) {
+
+        }
+
+    });
+
+
+}
 
 function addFilm() {
     var title = $("#title").val();
@@ -83,4 +113,47 @@ function addFilm() {
         }
 
     });
+
+
+}
+
+function deleteFilm(id) {
+alert(id);
+
+    $.ajax({
+        method: "get",
+        url:"/api/films/delete?id="+id,
+        contentType: "application/json; charset=utf-8",
+
+        success: function () {
+            window.location.replace("/films/all");
+            $("#id-delete").val(films.id);
+
+        },
+        error: function (error) {
+            alert("error")
+
+        }
+
+    });
+
+
+}
+
+function fillModal(id) {
+    alert(id)
+
+    $.ajax({
+        method: "get",
+        url:"/api/films/get?id="+id,
+        contentType:"application/json; charset=utf-8",
+        success: function (films) {
+            $("#id-edit").val(films.id);
+            $("#title-edit").val(films.title);
+            $("#rating-edit").val(films.rating);
+            $("#age-edit").val(films.age);
+
+        }
+    })
+
 }

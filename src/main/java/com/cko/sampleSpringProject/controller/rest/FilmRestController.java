@@ -24,6 +24,11 @@ public class FilmRestController {
         filmDAO.save(film);
     }
 
+    @GetMapping("/delete")
+    public void deleteFilm(@RequestBody Long id) {
+        filmDAO.deleteById(id);
+    }
+
     @GetMapping("/all")
     public List<Film> getAllFilm() {
         List<Film> films = filmDAO.findAll();

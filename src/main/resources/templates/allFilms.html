@@ -75,6 +75,55 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div align = "center"><input id="id-edit" type="text" placeholder="Film id" readonly><p></p></div>
+                        <div align = "center"><input id="title-edit" type="text" placeholder="Film title"><p></p></div>
+                        <div align = "center"><input id="rating-edit" type="number" placeholder="Film rating"> <p></p></div>
+                        <div align = "center"><input id = "age-edit" type="number" placeholder="Film age"> <p></p></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addEditedFilm()">Add film</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="aus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ausModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    <div align="center">
+                        <input id="id-delete" type="text" placeholder="Film id" hidden>
+                        <p>Are you sure?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteFilm()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!--<div align = "center">-->
