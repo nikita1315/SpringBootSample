@@ -25,7 +25,7 @@ public class FilmRestController {
     }
 
     @GetMapping("/delete")
-    public void deleteFilm(@RequestBody Long id) {
+    public void deleteFilm(@RequestParam Long id) {
         filmDAO.deleteById(id);
     }
 

@@ -43,7 +43,7 @@ $(document).ready(function () {
                     "<button  data-toggle=\"modal\" data-target=\"#edit-modal\" onclick=\"fillModal("+films[i].id+")\" class=\"btn btn-primary\" >Edit</button>"+
                     "</td>"+
                     "<td>"+
-                    "<a type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#aus\" >Delete</a>"+
+                    "<a type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#aus\" onclick=\"fillToDelete("+films[i].id+")\">Delete</a>"+
                     "</td>"+
                     "</tr>")
 
@@ -117,8 +117,9 @@ function addFilm() {
 
 }
 
-function deleteFilm(id) {
-alert(id);
+function deleteFilm() {
+    var id = $("#id-delete").val();
+    alert(id);
 
     $.ajax({
         method: "get",
@@ -127,7 +128,7 @@ alert(id);
 
         success: function () {
             window.location.replace("/films/all");
-            $("#id-delete").val(films.id);
+
 
         },
         error: function (error) {
@@ -152,6 +153,22 @@ function fillModal(id) {
             $("#title-edit").val(films.title);
             $("#rating-edit").val(films.rating);
             $("#age-edit").val(films.age);
+
+        }
+    })
+
+}
+
+function fillToDelete(id) {
+    alert(id)
+
+    $.ajax({
+        method: "get",
+        url:"/api/films/get?id="+id,
+        contentType:"application/json; charset=utf-8",
+        success: function (films) {
+            $("#id-delete").val(films.id);
+
 
         }
     })
