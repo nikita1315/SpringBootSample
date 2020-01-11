@@ -33,4 +33,8 @@ public class MainController {
         System.out.println(name);
         return "test";
     }
+    @GetMapping("/calculator")
+    public String showCalculatorPage(){
+        return "Calculator";
+    }
 }
